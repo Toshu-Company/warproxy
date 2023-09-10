@@ -14,7 +14,7 @@ Includes:
 ```yaml
 services:
   warproxy:
-    image: ghcr.io/Toshu-Company/warproxy:latest
+    image: ghcr.io/toshu-company/warproxy:latest
     restart: always
     environment:
       - WARP_PLUS=true

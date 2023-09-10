@@ -36,7 +36,7 @@ RUN chmod a+x \
 FROM base As publisher
 
 LABEL maintainer="Toshu-Company"
-LABEL org.opencontainers.image.source=https://github.com/Toshu-Company/warproxy
+LABEL org.opencontainers.image.source=https://github.com/toshu-company/warproxy
 
 COPY --from=collector /bar/ /
 
