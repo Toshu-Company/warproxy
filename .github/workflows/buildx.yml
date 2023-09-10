@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - "main"
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository }}
@@ -25,12 +25,12 @@ jobs:
           context: .
           file: Dockerfile
           tags: ${{ env.IMAGE_NAME }}:testing
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
       - name: Load Built Image and Test
         run: |
           docker buildx build \
             -t ${{ env.IMAGE_NAME }}:testing \
-            --platform=linux/amd64 \
+            --platform=linux/amd64,linux/arm64 \
             --load \
             .
           CID=$(docker run -d ${{ env.IMAGE_NAME }}:testing)
@@ -51,7 +51,7 @@ jobs:
           file: Dockerfile
           tags: |
             ${{ env.IMAGE_NAME }}:latest
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           push: true
       - name: Cache slim
         id: cache-slim

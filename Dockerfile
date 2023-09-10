@@ -26,17 +26,17 @@ COPY --from=wgcf-builder /usr/local/bin/wgcf /bar/usr/local/bin/wgcf
 COPY root/ /bar/
 
 RUN chmod a+x \
-        /bar/usr/local/bin/* \
-        /bar/etc/s6-overlay/s6-rc.d/*/run \
-        /bar/etc/s6-overlay/s6-rc.d/*/finish \
-        /bar/etc/s6-overlay/s6-rc.d/*/data/*
+    /bar/usr/local/bin/* \
+    /bar/etc/s6-overlay/s6-rc.d/*/run \
+    /bar/etc/s6-overlay/s6-rc.d/*/finish \
+    /bar/etc/s6-overlay/s6-rc.d/*/data/*
 
 #--------------#
 
 FROM base As publisher
 
-LABEL maintainer="kingcc"
-LABEL org.opencontainers.image.source=https://github.com/kingcc/warproxy
+LABEL maintainer="Toshu-Company"
+LABEL org.opencontainers.image.source=https://github.com/Toshu-Company/warproxy
 
 COPY --from=collector /bar/ /
 
@@ -49,8 +49,8 @@ RUN \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip; fi && \
     pip3 install --no-cache requests toml && \
     rm -rf \
-        /tmp/* \
-        /root/.cache
+    /tmp/* \
+    /root/.cache
 
 ENV \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
